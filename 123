@@ -1,0 +1,26 @@
+import itertools  
+  
+def generate_combinations_in_batches(n, k, batch_size):  
+    combinations = itertools.combinations(range(1, n + 1), k)  
+    batch = []  
+    count = 0  
+    for combo in combinations:  
+        batch.append(combo)  
+        count += 1  
+        if count == batch_size:  
+            yield batch  
+            batch = []  
+            count = 0  
+    if batch:  
+        yield batch  # 处理最后一批（可能不满batch_size）  
+  
+# 使用示例  
+n = 80  
+k = 20  
+batch_size = 1000  # 你可以根据需要调整这个大小  
+  
+for batch in generate_combinations_in_batches(n, k, batch_size):  
+    # 处理这一批组合  
+    print(f"处理了一批 {len(batch)} 个组合")  
+    # 这里可以添加你的处理逻辑  
+    # 例如，可以将这批组合写入文件、发送到数据库或进行进一步计算
