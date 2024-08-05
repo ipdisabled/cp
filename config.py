@@ -1,0 +1,111 @@
+# -*- coding: utf-8 -*-
+'''
+https://datachart.500.com/ssq/history/newinc/history.php?limit=5000&sort=0
+https://data.17500.cn/dlt_asc.txt
+https://data.17500.cn/ssq_asc.txt
+'''
+ball_name =[
+    ("红球","red"),
+    ("蓝球","blue"),
+]
+
+test_config = {
+    "kl8":{
+            "datapath":"kl8_data.csv",
+            "settings":{
+                "red":{
+                    "cnt":80,"picknum":20,"subpicknum":4,"cycle_row":2,"start_col_idx":2,"end_col_idx":21,
+                    "debug_data_path":"temp/kl8/red/","num_range":[],"skip":{"dvalue","dupzone"}
+                }
+            },
+            "precap":{
+                "red":{
+                    "skip_delcond":{'dupfz_cond','dvalue_cond'},
+                    "cycle_len_dupc_df":{
+                        'cnt':[1],
+                        'seqlen':[(6,7,8)],
+                        'dupc':[('0','2','22')]
+                    },
+                    "len_foc_inline_df":{
+                        'a_g_len':[(0,),(3,)],
+                        'foc':[(0,),(1,2)]
+                    },
+                    "cap_range":[0.3,0.85]
+                }
+            }
+    },
+    "pls":{},
+    "ssq":{
+            "datapath":"ssq_data.csv",
+            "settings":{
+                "red":{
+                    "cnt":33,"picknum":6,"cycle_row":5,"start_col_idx":2,"end_col_idx":7,
+                    "debug_data_path":"temp/ssq/red/","skip":{"dvalue","dupzone","numrange"}
+                },
+                "blue":{
+                    "cnt":16,"picknum":1,"cycle_row":4,"start_col_idx":8,"end_col_idx":8,
+                    "debug_data_path":"temp/ssq/blue/","skip":{"bit","arith_geo","dvalue","numrange"}
+                },
+            },
+            "precap":{
+                "red":{
+                    "skip_delcond":{'dupfz_cond','dvalue_cond'},
+                    "cycle_len_dupc_df":{
+                        'cnt':[1,2],
+                        'seqlen':[(10,11,12),(13,14,15,16,17)],
+                        'dupc':[('0','2','22'),('222','22','2222','2','322','22222')]
+                    },
+                    "len_foc_inline_df":{
+                        'a_g_len':[(0,),(3,4)],
+                        'foc':[(0,),(1,2)]
+                    },
+                    "cap_range":[0.3,0.85]
+                },
+                "blue":{
+                    "skip_delcond":{'diff_ds_cond','fo_cond','bit_cond','dvalue_cond'},
+                    "cycle_len_dupc_df":{
+                        'cnt':[1,5],
+                        'seqlen':[(2,),(4,5,6)]
+                    },
+                    "cap_range":[0.13,0.96]
+                },
+            }
+    },
+    "dlt":{
+            "datapath":"dlt_data.csv",
+            "settings":{
+                "red":{
+                    "cnt":35,"picknum":5,"cycle_row":7,"start_col_idx":2,"end_col_idx":6,
+                    "debug_data_path":"temp/dlt/red/","skip":{"dvalue","dupzone","numrange"}
+                },
+                "blue":{
+                    "cnt":12,"picknum":2,"cycle_row":6,"start_col_idx":7,"end_col_idx":8,
+                    "debug_data_path":"temp/dlt/blue/","skip":{"bit","arith_geo","numrange"}
+                },
+            },
+            "precap":{
+                "red":{
+                    "skip_delcond":{'dupfz_cond','dvalue_cond'},
+                    "cycle_len_dupc_df":{
+                        'cnt':[1,2],
+                        'seqlen':[(9,10),(12,13,14)],
+                        'dupc':[('0','2'),('22','2','222','32','3')]
+                    },
+                    "len_foc_inline_df":{
+                        'a_g_len':[(0,),(3,)],
+                        'foc':[(0,),(1,2)]
+                    },
+                    "cap_range":[0.13,0.96]
+                },
+                "blue":{
+                    "skip_delcond":{'diff_ds_cond','fo_cond','bit_cond'},
+                    "cycle_len_dupc_df":{
+                        'cnt':[1,2,3],
+                        'seqlen':[(3,4),(4,5,6),(5,6,7)]
+                    },
+                    "dvalue":['1','2','3','4','5','6','7'],
+                    "cap_range":[0.02,0.83]
+                },
+            }
+    }
+}
